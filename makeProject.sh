@@ -1,4 +1,13 @@
 #!/bin/bash
+#
+#
+# depends on npm, ng, curl, git et maven
+# to install, run these commands
+#
+# sudo apt-get install -y npm curl git maven
+# sudo npm install -g @angular/cli
+#
+#
 
 display_usage() { 
 	echo "This script must be run with sthe project title has argument " 
