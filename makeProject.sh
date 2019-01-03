@@ -46,10 +46,26 @@ curl https://start.spring.io/starter.tgz ${SPRING_STYLES} \
 
 # Default mysql Database
 cat <<'EOF' >src/main/resources/application.properties
-spring.jpa.hibernate.ddl-auto=create
+# Datasource
 spring.datasource.url=jdbc:mysql://localhost:3306/db_example
 spring.datasource.username=springuser
 spring.datasource.password=ThePassword
+# Set dialect to help hibernate write effiscient SQL
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+
+# Initialize the database using data.sql script
+spring.datasource.initialization-mode=always
+
+# Hibernate configuration
+#spring.jpa.hibernate.ddl-auto=update
+spring.jpa.hibernate.ddl-auto=create
+spring.jpa.show-sql=true
+# By default, spring transforms table's and column's name to lowercase. This parameter for the use of the name as specified in Entities
+spring.jpa.hibernate.naming.physical-strategy=org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+# Keep Datasource connection while idle
+spring.datasource.testWhileIdle=true
+spring.datasource.validationQuery=SELECT 1
 EOF
 
 # Setup Angular
